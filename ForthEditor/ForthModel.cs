@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Text;
 
 namespace ForthEditor
 {
@@ -98,14 +99,15 @@ namespace ForthEditor
 
         public void EnterCommand(string text)
         {
+            CommandLine = string.Empty;
             var enteredWords = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var output = new StringBuilder();
             foreach (var word in enteredWords)
             {
                 if (double.TryParse(word, System.Globalization.NumberStyles.Float,
                     System.Globalization.CultureInfo.GetCultureInfo("en-US"), out double number))
                 {
                     StackLines.Insert(0, new StackLine(number));
-                    CommandLines.Add(new CommandLine(word + " ok"));
                 }
                 else if (words.TryGetValue(word, out Action<ObservableCollection<StackLine>>? action))
                 {
@@ -117,7 +119,42 @@ namespace ForthEditor
                     {
                         StackLines.Clear();
                         CommandLines.Add(new CommandLine(ex.Message));
+                        break;
                     }
+                }
+                else if (word == ".")
+                {
+                    try
+                    {
+                        var value = StackLines[0].Value;
+                        StackLines.RemoveAt(0);
+                        output.Append($"{value} ");
+                    }
+                    catch (Exception ex)
+                    {
+                        StackLines.Clear();
+                        CommandLines.Add(new CommandLine(ex.Message));
+                        break;
+                    }
+                }
+                else if (word == "emit")
+                {
+                    try
+                    {
+                        var value = StackLines[0].Value;
+                        StackLines.RemoveAt(0);
+                        output.Append($"{(char)(int)value}");
+                    }
+                    catch (Exception ex)
+                    {
+                        StackLines.Clear();
+                        CommandLines.Add(new CommandLine(ex.Message));
+                        break;
+                    }
+                }
+                else if (word == "cr")
+                {
+                    output.AppendLine();
                 }
                 else
                 {
@@ -125,7 +162,8 @@ namespace ForthEditor
                     break;
                 }
             }
-            CommandLine = string.Empty;
+            if (output.Length > 0)
+                CommandLines.Add(new CommandLine($"{output}ok"));
         }
     }
 
