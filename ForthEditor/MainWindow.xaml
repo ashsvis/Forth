@@ -29,13 +29,15 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox Grid.Row="0" Grid.Column="1" BorderThickness="0"
+        <ListBox Grid.Row="0" Grid.Column="1" BorderThickness="0" HorizontalContentAlignment="Right"
                  x:Name="lbxStack" Background="Silver" Foreground="Black"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Path=Value}"/>
+                    <Border BorderThickness="0">
+                        <TextBlock Text="{Binding Path=Value}" HorizontalAlignment="Right"/>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
