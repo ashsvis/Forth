@@ -16,9 +16,37 @@ namespace ForthEditor
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ForthModel model;
+
         public MainWindow()
         {
             InitializeComponent();
+            model = (ForthModel)DataContext;
+            lbxCommands.ItemsSource = model.CommandLines;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void cmdLine_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) 
+            { 
+                model.CommandLines.Add(new CommandLine() { Line = cmdLine.Text });
+                model.CommandLine = string.Empty;
+                ScrollIntoView();
+                cmdLine.Focus();
+            }
+        }
+
+        private void ScrollIntoView()
+        {
+            if (lbxCommands.Items.Count == 0) return;
+            var index = lbxCommands.Items.Count - 1;
+            var item = lbxCommands.Items.GetItemAt(index);
+            lbxCommands.ScrollIntoView(item);
         }
     }
 }

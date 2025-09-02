@@ -4,9 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ForthEditor"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        mc:Ignorable="d" FontFamily="Consolas" FontSize="14" 
+        Background="WhiteSmoke" Loaded="Window_Loaded"
+        Title="Forth editor" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:ForthModel/>
+    </Window.DataContext>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=cmdLine}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Grid.Column="0" BorderThickness="0"
+                 x:Name="lbxCommands" Background="WhiteSmoke" Foreground="Black"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Line}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="0" Padding="0,0,0,5">
+            <TextBox x:Name="cmdLine" Text="{Binding Path=CommandLine}" KeyDown="cmdLine_KeyDown"
+                      Background="WhiteSmoke" Foreground="Black" BorderThickness="0"/>
+        </Border>
     </Grid>
 </Window>
