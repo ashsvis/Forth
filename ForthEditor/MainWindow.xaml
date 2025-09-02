@@ -15,6 +15,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
         <ListBox Grid.Row="0" Grid.Column="0" BorderThickness="0"
                  x:Name="lbxCommands" Background="WhiteSmoke" Foreground="Black"
                  ScrollViewer.VerticalScrollBarVisibility="Disabled" 
@@ -25,9 +29,19 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="0" Padding="0,0,0,5">
+        <ListBox Grid.Row="0" Grid.Column="1" BorderThickness="0"
+                 x:Name="lbxStack" Background="Silver" Foreground="Black"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Path=Value}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0" Padding="0,0,0,5">
             <TextBox x:Name="cmdLine" Text="{Binding Path=CommandLine}" KeyDown="cmdLine_KeyDown"
-                      Background="WhiteSmoke" Foreground="Black" BorderThickness="0"/>
+                      Background="LightYellow" Foreground="Black" BorderThickness="0"/>
         </Border>
     </Grid>
 </Window>

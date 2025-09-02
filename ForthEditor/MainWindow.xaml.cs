@@ -23,6 +23,7 @@ namespace ForthEditor
             InitializeComponent();
             model = (ForthModel)DataContext;
             lbxCommands.ItemsSource = model.CommandLines;
+            lbxStack.ItemsSource = model.StackLines;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -33,9 +34,8 @@ namespace ForthEditor
         private void cmdLine_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) 
-            { 
-                model.CommandLines.Add(new CommandLine() { Line = cmdLine.Text });
-                model.CommandLine = string.Empty;
+            {
+                model.EnterCommand(cmdLine.Text);
                 ScrollIntoView();
                 cmdLine.Focus();
             }
