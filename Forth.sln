@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForthEditor", "ForthEditor\ForthEditor.csproj", "{7D4075BA-E215-4804-8737-F140538539BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForthMachine", "ForthMachine\ForthMachine.csproj", "{AA6F806C-DDFB-4822-98BC-D415C58691ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7D4075BA-E215-4804-8737-F140538539BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D4075BA-E215-4804-8737-F140538539BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D4075BA-E215-4804-8737-F140538539BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA6F806C-DDFB-4822-98BC-D415C58691ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA6F806C-DDFB-4822-98BC-D415C58691ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA6F806C-DDFB-4822-98BC-D415C58691ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA6F806C-DDFB-4822-98BC-D415C58691ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
